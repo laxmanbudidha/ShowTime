@@ -1,0 +1,91 @@
+CREATE TABLE [dbo].[Bookings](
+	[BookingID] [int] IDENTITY(1,1) NOT NULL,
+	[TheaterID] [int] NOT NULL,
+	[MovieId] [int] NOT NULL,
+	[UserID] [nvarchar](50) NOT NULL,
+	[ShowtTimeing] [varchar](100) NOT NULL,
+	[NumberOfTickets] [int] NOT NULL,
+	[BookingDate] [datetime] NOT NULL,
+	[Status] [nvarchar](20) NOT NULL,
+	[CreatedDate] [datetime] NULL,
+	[UpdatedDate] [datetime] NULL,
+	[IsActive] [bit] NOT NULL,
+	[ModifiedById] [varchar](100) NULL)
+
+INSERT [dbo].[Bookings] ([TheaterID], [MovieId], [UserID], [ShowtTimeing], [NumberOfTickets], [BookingDate], [Status], [CreatedDate], [UpdatedDate], [IsActive], [ModifiedById]) VALUES ( 1, 7, N'laxman', N'2:00pm', 10, CAST(N'2024-08-11T00:00:00.000' AS DateTime), N'cancel', CAST(N'2024-08-11T10:15:50.787' AS DateTime), CAST(N'2024-08-11T15:45:50.780' AS DateTime), 1, N'laxman')
+GO
+INSERT [dbo].[Bookings] ( [TheaterID], [MovieId], [UserID], [ShowtTimeing], [NumberOfTickets], [BookingDate], [Status], [CreatedDate], [UpdatedDate], [IsActive], [ModifiedById]) VALUES ( 4, 7, N'laxman', N'2:30pm', 7, CAST(N'2024-08-11T12:38:38.553' AS DateTime), N'book', CAST(N'2024-08-11T12:39:28.643' AS DateTime), CAST(N'2024-08-11T18:09:28.643' AS DateTime), 1, NULL)
+GO
+
+
+
+
+
+
+CREATE TABLE [dbo].[Movies](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Title] [nvarchar](100) NOT NULL,
+	[Genre] [nvarchar](50) NOT NULL,
+	[ReleaseDate] [date] NOT NULL,
+	[IsActive] [bit] NULL,
+	[CreateDateTime] [datetime] NOT NULL,
+	[CreateById] [nvarchar](100) NOT NULL,
+	[TheaterID] [int] NULL)
+
+INSERT [dbo].[Movies] ( [Title], [Genre], [ReleaseDate], [IsActive], [CreateDateTime], [CreateById], [TheaterID]) VALUES ( 'Pushpa2', N'2024', CAST(N'2024-08-10' AS Date), NULL, CAST(N'2024-08-10T18:12:32.627' AS DateTime), N'laxman', NULL)
+GO
+INSERT [dbo].[Movies] ( [Title], [Genre], [ReleaseDate], [IsActive], [CreateDateTime], [CreateById], [TheaterID]) VALUES ( 'pushpa1', N'2024', CAST(N'2024-08-10' AS Date), 1, CAST(N'2024-08-10T18:17:06.387' AS DateTime), N'laxman', NULL)
+GO
+INSERT [dbo].[Movies] ( [Title], [Genre], [ReleaseDate], [IsActive], [CreateDateTime], [CreateById], [TheaterID]) VALUES ( 'rajarani', N'2029', CAST(N'2024-08-10' AS Date), 0, CAST(N'2024-08-10T18:18:58.280' AS DateTime), N'laxman', NULL)
+GO
+INSERT [dbo].[Movies] ( [Title], [Genre], [ReleaseDate], [IsActive], [CreateDateTime], [CreateById], [TheaterID]) VALUES ('arya2', N'2019', CAST(N'2024-08-10' AS Date), 1, CAST(N'2024-08-10T18:21:59.967' AS DateTime), N'laxman', NULL)
+GO
+INSERT [dbo].[Movies] ([Id], [Title], [Genre], [ReleaseDate], [IsActive], [CreateDateTime], [CreateById], [TheaterID]) VALUES ('pushpa2', N'2025', CAST(N'2024-08-10' AS Date), 1, CAST(N'2024-08-10T21:58:52.683' AS DateTime), N'Laxman', NULL)
+GO
+
+
+CREATE TABLE [dbo].[Theaters](
+	[TheaterID] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [nvarchar](100) NOT NULL,
+	[Location] [nvarchar](255) NOT NULL,
+	[Capacity] [int] NOT NULL,
+	[ContactNumber] [nvarchar](15) NULL,
+	[CreatedDate] [datetime] NULL,
+	[UpdatedDate] [datetime] NULL,
+	[IsActive] [bit] NOT NULL)
+
+INSERT [dbo].[Theaters] ( [Name], [Location], [Capacity], [ContactNumber], [CreatedDate], [UpdatedDate], [IsActive]) VALUES ( N'PVR Cinemas', N'123 Main Street, New York, NY', 250, N'123-456-7890', CAST(N'2024-08-11T15:11:32.020' AS DateTime), CAST(N'2024-08-11T15:11:32.020' AS DateTime), 1)
+GO
+INSERT [dbo].[Theaters] ( [Name], [Location], [Capacity], [ContactNumber], [CreatedDate], [UpdatedDate], [IsActive]) VALUES (N'IMAX Theater', N'456 Broadway, Los Angeles, CA', 300, N'987-654-3210', CAST(N'2024-08-11T15:11:32.020' AS DateTime), CAST(N'2024-08-11T15:11:32.020' AS DateTime), 1)
+GO
+INSERT [dbo].[Theaters] ( [Name], [Location], [Capacity], [ContactNumber], [CreatedDate], [UpdatedDate], [IsActive]) VALUES ( N'Cinepolis', N'789 Elm Street, Chicago, IL', 200, N'555-123-4567', CAST(N'2024-08-11T15:11:32.020' AS DateTime), CAST(N'2024-08-11T15:11:32.020' AS DateTime), 1)
+GO
+INSERT [dbo].[Theaters] ( [Name], [Location], [Capacity], [ContactNumber], [CreatedDate], [UpdatedDate], [IsActive]) VALUES ( N'Regal Cinemas', N'321 Oak Avenue, Miami, FL', 143, N'555-987-6543', CAST(N'2024-08-11T15:11:32.020' AS DateTime), CAST(N'2024-08-11T15:11:32.020' AS DateTime), 1)
+GO
+INSERT [dbo].[Theaters] ( [Name], [Location], [Capacity], [ContactNumber], [CreatedDate], [UpdatedDate], [IsActive]) VALUES ( N'AMC Theatres', N'654 Maple Drive, Houston, TX', 180, N'555-456-7890', CAST(N'2024-08-11T15:11:32.020' AS DateTime), CAST(N'2024-08-11T15:11:32.020' AS DateTime), 0)
+GO
+
+CREATE TABLE [dbo].[Users](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Username] [nvarchar](50) NOT NULL,
+	[Email] [nvarchar](100) NOT NULL,
+	[Password] [nvarchar](255) NOT NULL,
+	[RefreshToken] [nvarchar](255) NULL,
+	[Role] [nvarchar](100) NULL)
+
+INSERT [dbo].[Users] ( [Username], [Email], [Password], [RefreshToken], [Role]) VALUES (N'Laxman', N'jane.doe@example.com', N'123', N'QFoOgsV9KKKvycwzWUgF6E8Mx9JU/HNp/vRZbmg/tkc=', N'User')
+GO
+INSERT [dbo].[Users] ( [Username], [Email], [Password], [RefreshToken], [Role]) VALUES ( N'string', N'user@example.com', N'string', NULL, N'User')
+GO
+INSERT [dbo].[Users] ( [Username], [Email], [Password], [RefreshToken], [Role]) VALUES ( N'Laxmanb', N'laxman@gmail.com', N'123', NULL, N'Admin')
+GO
+INSERT [dbo].[Users] ( [Username], [Email], [Password], [RefreshToken], [Role]) VALUES ( N'sairam', N'us@gmail.com', N'123456', NULL, N'User')
+GO
+INSERT [dbo].[Users] ( [Username], [Email], [Password], [RefreshToken], [Role]) VALUES ( N'janu', N'laxman@gmail.com', N'123456', NULL, N'User')
+GO
+INSERT [dbo].[Users] ( [Username], [Email], [Password], [RefreshToken], [Role]) VALUES ( N'naresh', N'naresh@gmail.com', N'naresh123', NULL, N'User')
+GO
+INSERT [dbo].[Users] ( [Username], [Email], [Password], [RefreshToken], [Role]) VALUES ( N'Vamshi', N'Vamshi@example.com', N'12345678', NULL, NULL)
+
+
+
